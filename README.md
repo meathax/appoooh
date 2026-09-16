@@ -22,7 +22,7 @@ With `robowres.zip` in `rom/`, validate and run the simulation-only smoke tests 
 
 ## Releases
 
-The [releases folder](releases/) contains both game MRAs and the shared [Arcade-Appoooh.rbf](releases/Arcade-Appoooh.rbf) build for MiSTer.
+The [releases folder](releases/) contains both game MRAs and the shared [Arcade-Appoooh_20260916.rbf](releases/Arcade-Appoooh_20260916.rbf) build for MiSTer.
 
 The reusable CPU, PSG, ADPCM and MiSTer platform sources—and the decision to avoid GPL-2-only donor RTL—are documented in [DONORS.md](DONORS.md).
 
