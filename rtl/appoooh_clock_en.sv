@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-module drmicro_ce #(parameter integer RATE=3072000, CLOCK=50000000, INITIAL_PHASE=0)(
+module appoooh_ce #(parameter integer RATE=3072000, CLOCK=50000000, INITIAL_PHASE=0)(
  input logic clk, reset, output logic ce
 );
  logic [31:0] phase;

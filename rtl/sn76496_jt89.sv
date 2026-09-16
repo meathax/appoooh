@@ -13,12 +13,12 @@ module sn76496_jt89(
  logic [9:0] tone[0:2];
  logic [3:0] volume[0:3];
  logic [2:0] noise_mode,last_reg;
- logic [3:0] divider;
+ logic [2:0] divider;
  logic [10:0] count[0:2];
  logic [11:0] noise_count,noise_period;
  logic noise_written;
  wire [2:0] reg_sel=data[7]?data[6:4]:last_reg;
- wire tick=ce&&divider==15;
+ wire tick=ce&&divider==7;
  wire [10:0] tone2_period=tone[2]==0?11'd1024:{1'b0,tone[2]};
  function automatic [12:0] attenuation(input [3:0] v);
   case(v)
@@ -40,7 +40,7 @@ module sn76496_jt89(
    for(integer i=0;i<3;i=i+1)begin tone[i]<=0;count[i]<=0;end
    for(integer i=0;i<4;i=i+1)volume[i]<=0;
   end else begin
-   if(ce)divider<=divider+4'd1;
+   if(ce)divider<=divider+3'd1;
    if(tick)begin
     for(integer i=0;i<3;i=i+1)begin
      if(count[i]<=1)begin count[i]<=tone[i]==0?11'd1024:{1'b0,tone[i]};digital[i]<=~digital[i];end

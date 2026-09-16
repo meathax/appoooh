@@ -3,7 +3,7 @@
 module emu (
  `include "sys/emu_ports.vh"
 );
- import drmicro_pkg::*;
+ import appoooh_pkg::*;
  assign ADC_BUS='z;assign USER_OUT='1;
  assign {UART_RTS,UART_TXD,UART_DTR}=3'd0;
  assign {SD_SCK,SD_MOSI,SD_CS}=3'bzzz;
@@ -18,9 +18,9 @@ module emu (
  wire [35:0] ext_bus;
  assign ext_bus[32]=1'b0;assign ext_bus[15:0]=16'd0;
  wire download,wr;wire [15:0] index;wire [26:0] address;wire [7:0] data;
- localparam CONF_STR={"DrMicro;;","O[2],Orientation,Vertical,Native;","O[5:3],Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
+ localparam CONF_STR={"Appoooh;;","O[2],Orientation,Native,Vertical;","O[5:3],Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
  "O[7:6],Aspect ratio,Original,Full Screen,[ARC1],[ARC2];","DIP;","-;","T[0],Reset;","R[0],Reset and close OSD;",
- "J1,Action,Start 1,Start 2,Coin,Service;","jn,A,Start,Select,R,L;","V,Source development;"};
+ "J1,Action,Action 2,Start 1,Start 2,Coin,Service;","jn,A,B,Start,Select,R1,L1;","V,Source development;"};
  hps_io #(.CONF_STR(CONF_STR),.WIDE(0)) hps(
   .joystick_2(),
   .joystick_3(),
@@ -87,13 +87,13 @@ module emu (
   if(address==1)dip2<=data;
  end
  wire [7:0] r,g,b;wire hs,vs,hb,vb,ce,loaded,load_error,running;
- drmicro_core board(.clk(CLK_50M),.cold_reset(RESET),.game_reset(status[0]|buttons[1]),
+ appoooh_core board(.clk(CLK_50M),.cold_reset(RESET),.game_reset(status[0]|buttons[1]),
   .download(download),.ioctl_wr(wr),.ioctl_index(index),.ioctl_addr(address),.ioctl_data(data),
   .joy0(joy0),.joy1(joy1),.ps2_key(ps2_key),.dip1(dip1),.dip2(dip2),
   .loaded(loaded),.load_error(load_error),.running(running),.red(r),.green(g),.blue(b),.hs(hs),.vs(vs),.hblank(hb),.vblank(vb),.pixel_ce(ce),.audio(AUDIO_L),
   .debug_x(),.debug_y(),.debug_addr(),.debug_data(),.debug_io_write(),.debug_mem_write(),.debug_fetch(),.debug_nmi(),.debug_halt(),.deadline_error(),.psg0(),.psg1(),.psg2(),.adpcm(),.debug_pen());
  assign LED_USER=download|load_error;
- wire native_mode=status[2]|direct_video;
+ wire native_mode=!status[2]|direct_video;
  assign VIDEO_ARX=status[7:6]==0?(native_mode?13'd4:13'd3):{11'd0,status[7:6]}-13'd1;
  assign VIDEO_ARY=status[7:6]==0?(native_mode?13'd3:13'd4):13'd0;
  arcade_video #(.WIDTH(256),.DW(24),.GAMMA(1)) av(.clk_video(CLK_50M),.ce_pix(ce),.RGB_in({r,g,b}),.HBlank(hb),.VBlank(vb),.HSync(hs),.VSync(vs),
