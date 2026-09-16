@@ -20,7 +20,7 @@ module emu (
  wire download,wr;wire [15:0] index;wire [26:0] address;wire [7:0] data;
  localparam CONF_STR={"Appoooh;;","O[2],Orientation,Native,Vertical;","O[5:3],Scandoubler Fx,None,HQ2x,CRT 25%,CRT 50%,CRT 75%;",
  "O[7:6],Aspect ratio,Original,Full Screen,[ARC1],[ARC2];","DIP;","-;","T[0],Reset;","R[0],Reset and close OSD;",
- "J1,Action,Action 2,Start 1,Start 2,Coin,Service;","jn,A,B,Start,Select,R1,L1;","V,Source development;"};
+ "J1,Button 1,Button 2,Button 3,Start 1,Start 2,Coin 1,Coin 2,Service;","jn,A,B,X,Start,Select,R1,R2,L1;","V,Source development;"};
  hps_io #(.CONF_STR(CONF_STR),.WIDE(0)) hps(
   .joystick_2(),
   .joystick_3(),
