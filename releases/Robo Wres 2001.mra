@@ -18,7 +18,7 @@
     <dip name="Demo Sounds" bits="5" ids="Off,On" />
     <dip name="Language" bits="7" ids="Japanese,English" />
   </switches>
-  <buttons names="Punch,Grapple,Kick,Start 1,Start 2,Coin 1,Coin 2,Service" default="A,B,X,Start,Select,R1,R2,L1" count="8" />
+  <buttons names="Punch,Grapple,Special,Start 1,Start 2,Coin 1,Coin 2,Service" default="A,B,X,Start,Select,R1,R2,L1" count="8" />
   <!-- Parent set only; bootleg-only files from robowres.zip are intentionally excluded. -->
   <rom index="1" zip="robowres.zip">
     <part name="epr-7540.13d" crc="a2a54237" />

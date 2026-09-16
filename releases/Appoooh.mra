@@ -10,7 +10,7 @@
   <mameversion>0289</mameversion>
   <players>2</players>
   <joystick>8-way</joystick>
-  <num_buttons>2</num_buttons>
+  <num_buttons>3</num_buttons>
   <!-- ROM order follows the populated MAME addresses with the unused 0x2000 hole removed. -->
   <switches default="60,ff" base="0">
     <dip name="Coin A" bits="0,1,2" ids="1C 1C,2C 1C,3C 1C,4C 1C,1C 2C,1C 3C,1C 4C,2C 3C" />
@@ -19,7 +19,7 @@
     <dip name="Cabinet" bits="6" ids="Cocktail,Upright" />
     <dip name="Difficulty" bits="7" ids="Easy,Hard" />
   </switches>
-  <buttons names="Action,Action 2,Start 1,Start 2,Coin,Service" default="A,B,Start,Select,R1,L1" count="6" />
+  <buttons names="Button 1,Button 2,Button 3,Start 1,Start 2,Coin 1,Coin 2,Service" default="A,B,X,Start,Select,R1,R2,L1" count="8" />
   <rom index="0" zip="appoooh.zip">
     <part name="epr-5906.bin" crc="fffae7fe" />
     <part name="epr-5907.bin" crc="57696cd6" />

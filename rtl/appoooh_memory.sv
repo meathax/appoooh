@@ -105,8 +105,11 @@ module appoooh_memory(
      end else if(load_offset<32'h0a000)program_rom4[load_addr[12:0]]<=load_data;
      else if(load_offset<32'h0c000)program_rom5[load_addr[12:0]]<=load_data;
      else if(load_offset<32'h0e000)program_rom6[load_addr[12:0]]<=load_data;
-     else if(load_offset<32'h10000)program_rom7[load_addr[12:0]]<=load_data;
-     else if(load_offset>=32'h12000&&load_offset<32'h14000)program_rom8[load_addr[12:0]]<=load_data;
+     // MAME copies epr-7542 bytes 0x2000-0x5fff into the bank-1 window
+     // at 0x10000-0x13fff. In the packed MRA stream those source bytes are
+     // at 0x12000-0x15fff, which feed the a000 and c000 CPU pages.
+     else if(load_offset>=32'h12000&&load_offset<32'h14000)program_rom7[load_addr[12:0]]<=load_data;
+     else if(load_offset>=32'h14000&&load_offset<32'h16000)program_rom8[load_addr[12:0]]<=load_data;
     end
     else if(load_offset<ROBOWRES_GFX1_BASE+32'h08000)gfx1_p0[15'(load_offset-ROBOWRES_GFX1_BASE)]<=load_data;
     else if(load_offset<ROBOWRES_GFX1_BASE+32'h10000)gfx1_p1[15'(load_offset-ROBOWRES_GFX1_BASE-32'h08000)]<=load_data;
